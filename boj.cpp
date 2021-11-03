@@ -1,17 +1,55 @@
 #include <iostream>
-#include <random>
 using namespace std;
 
+char* mystrcat(const char* str1, const char* str2)
+{
+    int i = 0, len1 = 0, len2 = 0;
+
+    while (1)
+    {
+        if (str1[i] == '\0')
+        {
+          len1 = i;
+          break;
+        }
+        i++;
+    }
+
+    i = 0;
+    while (1)
+    {
+        if (str2[i] == '\0')
+        {
+          len2 = i;
+          break;
+        }
+        i++;
+    }
+
+    char* ret = new char[len1 + len2 +1];
+
+    i = 0;
+    while (*str1)
+    {
+        ret[i] = *str1;
+        str1++;
+        i++;
+    }
+
+    i = len1;
+    while (*str2)
+    {
+        ret[i] = *str2;
+        str2++;
+        i++;
+    }
+
+    ret[len1 + len2] = '\0';
+
+    return ret;
+}
 int main()
 {
-  random_device rd;
-  mt19937 gen(rd());
-  uniform_int_distribution<int> dis(0,3);
-  int rNum;
-  for(int i =0; i<20; i++)
-  {
-
-  rNum = dis(gen) % 4;
-  cout << rNum;
-  }
+    char* str = mystrcat("Hello!", "World!");
+    cout << str << endl;
 }
